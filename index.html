@@ -4,30 +4,36 @@
     <meta charset="utf-8" />
     <title>Toggle Switch Button with jQuery</title>
     <style>
+      body {
+        margin: 0;
+        height: 100vh;
+        width: 100vw;
+      }
       #toggle {
-        background: red;
+        background: rgb(107, 5, 158);
         color: white;
         font-size: 24px;
         padding: 10px 20px;
         border-radius: 20px;
         text-align: center;
-        position: relative;
+        position: absolute;
         height: 50px;
         width: 150px;
+        margin: 50px 250px;
       }
       #toggle.on {
-        background: green;
+        background: skyblue;
       }
       #toggle.on::before {
-        content: 'ON';
+        content: 'DAY';
         position: absolute;
         left: -80px;
         top: 18px;
       }
       #toggle::before {
-        content: 'OFF';
+        content: 'NIGHT';
         position: absolute;
-        right: 26px;
+        right: 18px;
         top: 18px;
       }
       /* Add the white square to the button */
@@ -56,6 +62,24 @@
         border-radius: 14px;
         transition: all 0.5s ease;
       }
+      #background {
+        width: 100vw;
+        height: 100vh;
+        background-image: url('./nighttime.png');
+        background-size: cover;
+        background-position: center;
+        position: absolute;
+        transition: 1s;
+      }
+      #background.on {
+        width: 100vw;
+        height: 100vh;
+        background-image: url('./daytime.png');
+        background-size: cover;
+        background-position: center;
+        position: absolute;
+        transition: 1s;
+      }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
@@ -63,14 +87,17 @@
         $('#toggle').click(function (event) {
           if ($(this).hasClass('on')) {
             $(this).removeClass('on');
+            $('#background').removeClass('on');
           } else {
             $(this).addClass('on');
+            $('#background').addClass('on');
           }
         });
       });
     </script>
   </head>
   <body>
+    <div id="background"></div>
     <div id="toggle"></div>
   </body>
 </html>
